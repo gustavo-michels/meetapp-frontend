@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
+import { MdControlPoint } from 'react-icons/md';
 
-import { signOut } from '~/store/modules/auth/actions';
 import { updateProfileRequest } from '~/store/modules/user/actions';
 
-import AvatarInput from './AvatarInput';
+// import AvatarInput from './AvatarInput';
 
 import { Container } from './styles';
 
@@ -17,14 +17,9 @@ export default function Profile() {
     dispatch(updateProfileRequest(data));
   }
 
-  function handleSignOut() {
-    dispatch(signOut());
-  }
-
   return (
     <Container>
       <Form initialData={profile} onSubmit={handleSubmit}>
-        <AvatarInput name="avatar_id" />
         <Input name="name" placeholder="Nome completo" />
         <Input name="email" placeholder="Endereço de e-mail" />
 
@@ -40,13 +35,11 @@ export default function Profile() {
           type="password"
           placeholder="Confirme sua nova senha"
         />
-        <hr />
-        <button type="submit">Atualizar Perfil</button>
+        <button type="submit">
+          <MdControlPoint size="20" style={{ marginRight: 10 }} />
+          Salvar perfil
+        </button>
       </Form>
-
-      <button type="button" onClick={handleSignOut}>
-        Sair do GoBarber
-      </button>
     </Container>
   );
 }
